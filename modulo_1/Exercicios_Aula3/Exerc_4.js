@@ -55,3 +55,14 @@ console.log(cadastroMoradores.length)
 
 var frase = "O capacita é maximo"
 console.log(frase.replace("maximo", "incrivel"))
+
+console.log("mostrando os nomes de todos os maradores ")
+
+for (var i = 0; i<cadastroMoradores.length; i++){
+    console.log(` morador ${i+1}: `+cadastroMoradores[i].nome)
+}
+
+console.log("imprimindo números pares de 1 a 20")
+for(var i = 2; i <= 20; i+=2){
+    console.log(i)
+}
