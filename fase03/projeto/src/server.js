@@ -4,24 +4,47 @@ const dataBase = require("./dataBase")
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.get("/pokemos", (req,resp) => {
-    resp.send(dataBase.mostrarPokemons())
+// mostrar todos os pokemos
+app.get("/pokemos", (req,res) => {
+    res.send(dataBase.mostrarPokemons())
 })
 
-app.get("/pokemos/:id", (req,resp) => {
-    resp.send(dataBase.mostrarPokemon(req.params.id))
+// motrar um pokemon
+app.get("/pokemos/:id", (req,res) => {
+    res.send(dataBase.mostrarPokemon(req.params.id))
 })
 
-app.post("/pokemos", (req,resp) => {
+
+// salvar pokemon
+app.post("/pokemos", (req,res) => {
     const pokemon = dataBase.salvarPokemons({
         nome: req.body.nome,
         tipo: req.body.tipo,
-        cor: req.body.cor,
-        id: req.params.tipo
+        fraqueza: req.body.fraqueza,
+        resistencia: req.body.resistencia,
+        hp: 100
     })
-
-    resp.send(pokemon)
+    
+    res.send(pokemon)
 })
 
+// actualizar um pokemon
+app.put("/pokemos/:id", (req,res) => {
+    const pokemon = dataBase.actualizarPokemon(req.params.id,{
+        nome: req.body.nome,
+        tipo: req.body.tipo,
+        fraqueza: req.body.fraqueza,
+        resistencia: req.body.resistencia,
+        hp: 100,
+        id: parseInt(req.params.id)
+    })
+    
+    res.send(pokemon)
+})
+
+// apagar um pokemo
+app.delete("/pokemos/:id", (req,res) => {
+    res.send(dataBase.deletarPokemon(req.params.id))
+})
 
 app.listen(3003) 
