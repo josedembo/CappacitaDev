@@ -3,7 +3,6 @@ const sequenceia = {
     get id() {return this._id++}
 }
 
-
 const pokemons = []
 
 // salavar pokemons
