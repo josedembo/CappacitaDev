@@ -1,3 +1,5 @@
+const data = require("./data")
+const database = data
 const sequenceia = {
     _id:1,
     get id() {return this._id++}
@@ -56,12 +58,15 @@ function batalhaPokemo(id1, id2){
     const superEfetivo = 40
     const efetivo = 20
     const naoEfetivo = 10
-    // let resutado = ""
+    
+    let resultado = ""
  
 
     const pokemon1 = pokemons[id1]
     const pokemon2 = pokemons[id2]
-
+    const hpPokemon1 = pokemon1.hp
+    const hpPokemon2 = pokemon2.hp
+    //batalhando
     if(pokemon1.hp != 0 && pokemon2.hp != 0){
         
         if(pokemon1.tipo == pokemon2.fraquesa){
@@ -73,6 +78,7 @@ function batalhaPokemo(id1, id2){
         }
     }
 
+    // batalhando
     if(pokemon1.hp != 0 && pokemon2.hp != 0){
         
         if(pokemon2.tipo == pokemon1.fraquesa){
@@ -84,19 +90,24 @@ function batalhaPokemo(id1, id2){
         }
     }
 
+    //limite inferior de hp = 0
     if(pokemon1.hp < 0) pokemon1.hp = 0
     if(pokemon2.hp < 0) pokemon2.hp = 0
 
-    //encontrar o vencedor
-    // if(pokemon1.hp > pokemon2.hp){
-    //     resutado = `resultaddo: ${pokemon1.nome} é o vencedor`
-    // }else if(pokemon1.hp == pokemon2.hp){
-    //     resutado = `resultado: Empate`
-    // }else{
-    //     resutado = `resultaddo: ${pokemon2.nome} é o vencedor`
-    // }
+    const difHpPokemon1 = hpPokemon1 - pokemon1.hp 
+    const difHpPokemon2 = hpPokemon2 - pokemon2.hp
+    // encontrar o vencedor
+    if(difHpPokemon1 < difHpPokemon2){
+        resultado = `resultado: ${pokemon1.nome} é o vencedor da batalha`
+    }else if(difHpPokemon1 == difHpPokemon2){
+        resultado = `resultado: Empate`
+    }else{
+        resultado = `resultaddo: ${pokemon2.nome} é o vencedor da batalha`
+    }
+    const antesBatalha = `hp antes da batalha\n${pokemon1.nome}: ${hpPokemon1}| ${pokemon2.nome}: ${hpPokemon2}`
+    const depoisBatalha = `hp depois da batalha\n${pokemon1.nome}: ${pokemon1.hp} | ${pokemon2.nome}: ${pokemon2.hp}`
 
-    return `${pokemon1.nome}: ${pokemon1.hp} | ${pokemon2.nome}: ${pokemon2.hp}`
+    return `${antesBatalha}\n${depoisBatalha}\n${resultado}`
 
 }
 
@@ -127,4 +138,19 @@ function curarPokemon(id){
     
 }
 
-module.exports = {salvarPokemons, mostrarPokemon, mostrarPokemons, actualizarPokemon, deletarPokemon, batalhaPokemo, curarPokemon}
+// mostra a quantidade e os nomes os pokemons de um tipo informado
+function tipoPokmon(tipo){
+    const nomes = []
+    const listaPokemons = database.filter(pokemon => pokemon.tipo == tipo)
+    
+    for(let i =0; i<listaPokemons.length; i++){
+        let pokemon = listaPokemons[i]
+        nomes.push(pokemon.nome) 
+    }
+    return  `Total de pokemons o tipo ${tipo}: ${listaPokemons.length}\nPokemons:${nomes} `
+}
+
+// console.log(tipoPokmon("electric"))
+module.exports = {salvarPokemons, mostrarPokemon, mostrarPokemons,
+     actualizarPokemon,deletarPokemon, batalhaPokemo, curarPokemon,
+    tipoPokmon}
