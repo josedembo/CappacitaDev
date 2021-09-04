@@ -96,13 +96,14 @@ function batalhaPokemo(id1, id2){
 
     const difHpPokemon1 = hpPokemon1 - pokemon1.hp 
     const difHpPokemon2 = hpPokemon2 - pokemon2.hp
+    
     // encontrar o vencedor
     if(difHpPokemon1 < difHpPokemon2){
         resultado = `resultado: ${pokemon1.nome} é o vencedor da batalha`
     }else if(difHpPokemon1 == difHpPokemon2){
         resultado = `resultado: Empate`
     }else{
-        resultado = `resultaddo: ${pokemon2.nome} é o vencedor da batalha`
+        resultado = `resultado: ${pokemon2.nome} é o vencedor da batalha`
     }
     const antesBatalha = `hp antes da batalha\n${pokemon1.nome}: ${hpPokemon1}| ${pokemon2.nome}: ${hpPokemon2}`
     const depoisBatalha = `hp depois da batalha\n${pokemon1.nome}: ${pokemon1.hp} | ${pokemon2.nome}: ${pokemon2.hp}`
@@ -138,16 +139,16 @@ function curarPokemon(id){
     
 }
 
-// mostra a quantidade e os nomes os pokemons de um tipo informado
+// mostrar  os nomes dos pokemons com o mesmo tipo
 function tipoPokmon(tipo){
     const nomes = []
-    const listaPokemons = database.filter(pokemon => pokemon.tipo == tipo)
+    const listaPokemons = pokemons.filter(pokemon => pokemon.tipo == tipo)
     
     for(let i =0; i<listaPokemons.length; i++){
         let pokemon = listaPokemons[i]
         nomes.push(pokemon.nome) 
     }
-    return  `Total de pokemons o tipo ${tipo}: ${listaPokemons.length}\nPokemons:${nomes} `
+    return  `Total de pokemons do tipo ${tipo}: ${listaPokemons.length}\nPokemons:${nomes} `
 }
 
 // console.log(tipoPokmon("electric"))

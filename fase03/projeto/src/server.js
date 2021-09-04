@@ -56,4 +56,10 @@ app.get("/cura/:id", (req, res) => {
     res.send(dataBase.curarPokemon(req.params.id))
 })
 
+// mostrar o pokemon pelo tipo
+
+app.put("/pokemons/tipo/:nome", (req, res) =>{
+    res.send(dataBase.tipoPokmon(req.params.nome))
+})
+
 app.listen(3003) 
