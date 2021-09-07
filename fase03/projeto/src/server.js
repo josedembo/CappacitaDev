@@ -1,59 +1,56 @@
 const express = require("express")
 const app = express()
-const dataBase = require("./dataBase")
+const dataBase = require("../database/dataBaseKnex")
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({extended: true}))
 
 // mostrar todos os pokemons
-app.get("/pokemons", (req,res) => {
-    res.send(dataBase.mostrarPokemons())
+app.get("/pokemons", async(req,res) => {
+    res.send( await dataBase.mostrarPokemons())
 })
 
-// motrar um pokemon
-app.get("/pokemons/:id", (req,res) => {
-    res.send(dataBase.mostrarPokemon(req.params.id))
+// mostrar um pokemon
+app.get("/pokemons/:id", async(req,res) => {
+    res.send( await dataBase.mostrarPokemon(req.params.id))
 })
 
 // salvar pokemon
-app.post("/pokemons", (req,res) => {
-    const pokemon = dataBase.salvarPokemons({
+app.post("/pokemons",async (req,res) => {
+    const pokemon = await dataBase.salvarPokemons({
         nome: req.body.nome,
         tipo: req.body.tipo,
         fraqueza: req.body.fraqueza,
         resistencia: req.body.resistencia,
-        hp: 100
     })
     
     res.send(pokemon)
 })
 
 // actualizar um pokemon
-app.put("/pokemons/:id", (req,res) => {
-    const pokemon = dataBase.actualizarPokemon(req.params.id,{
+app.put("/pokemons/:id", async(req,res) => {
+    const pokemon = await dataBase.actualizarPokemon(req.params.id,{
         nome: req.body.nome,
         tipo: req.body.tipo,
         fraqueza: req.body.fraqueza,
         resistencia: req.body.resistencia,
-        hp: parseInt(req.body.hp),
-        id: parseInt(req.params.id)
     })
     
     res.send(pokemon)
 })
 
-// apagar um pokemo
-app.delete("/pokemons/:id", (req,res) => {
-    res.send(dataBase.deletarPokemon(req.params.id))
+// apagar um pokemon
+app.delete("/pokemons/:id", async(req,res) => {
+    res.send(await dataBase.deletarPokemon(req.params.id))
 })
 
 // batalha pokemon
-app.post("/batalha", (req, res) =>{
-    res.send(dataBase.batalhaPokemo(req.body.id1, req.body.id2))
+app.post("/batalha", async(req, res) =>{
+    res.send(await dataBase.batalhaPokemo(req.body.id1, req.body.id2))
 })
 
 //curar pokemon
-app.get("/cura/:id", (req, res) => {
-    res.send(dataBase.curarPokemon(req.params.id))
+app.get("/cura/:id", async(req, res) => {
+    res.send(await dataBase.curarPokemon(req.params.id))
 })
 
 // mostrar o pokemon pelo tipo
