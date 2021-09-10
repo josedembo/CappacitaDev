@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contato</title>
+</head>
+<body>
+    <header>
+        <h1>Fale conosco</h1>
+        <p>Deixe suas dúvidas ou sugestões</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="./aula08.html" target="_blanck">Home</a></li>
+            <li><a href="https://docs.altu.com.br" target="_blanck">ALTU</a></li>
+            <li><a href="./contato.html" target="blanck">Contato</a></li>
+            <div class="usuario"><a href="">usuario</a></div>
+        </ul>
+    </nav>
+
+    <section>
+        <main>
+            <form action="./post_servidor.php" method="POST" autocomplete="on">
+                <fieldset>
+                    <legend>Dados pessoais:</legend>
+
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" id="nome">
+
+                    <label for="sobrenome">Sobrenome:</label>
+                    <input type="text" name="sobrenome" id="sobrenome">
+
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email">
+
+                    <legend>Preferencias de contato:</legend>
+
+                    <label for="sms">SMS:</label>
+                    <input type="radio" id="sms" name="preferencia_contato" value="sms">
+
+                    <label for="email">Email:</label>
+                    <input type="radio" id="email" name="preferencia_contato" value="email">
+
+                    <label for="ligacao">Ligação:</label>
+                    <input type="radio" id="ligacao" name="preferencia_contato" value="ligacao">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Questionario:</legend>
+                    <label for="dev">Selecione uma opção:</label>
+                    <select name="dev" id="dev" size="1">
+                        <option value="backand">back-and</option>
+                        <option value="frontand">front-and</option>
+                        <option value="fullstack">fullstack</option>
+                        <option value="devops">Dev-Ops</option>
+                    </select>
+                    <!-- <label for="textearea">Deixe suas sugestões:</label> -->
+                    <textarea name="textarea" id="textarea" cols="70" rows="10"></textarea>
+                    <input type="submit" value="Enviar Fornulário">
+                </fieldset>
+            </form>
+        </main>
+    </section>
+    <footer>
+        <figure>
+            <img src="./download.jpeg" alt="logo-cappacita">
+            <figcaption>Cappacita Dev 2021</figcaption>
+        </figure>
+
+        <section>
+            <ul>
+                <li><a href="">Link 1</a></li>
+                <li><a href="">Link 2</a></li>
+                <li><a href="">Link 3</a></li>
+            </ul>
+        </section>
+        <section>
+            <ul>
+                <li><a href="">Úteis 1</a></li>
+                <li><a href="">Úteis 2</a></li>
+                <li><a href="">Úteis 3</a></li>
+            </ul>
+        </section>
+        <section>
+            <ul>
+                <li><a href="">Link 1</a></li>
+                <li><a href="">Link 2</a></li>
+                <li><a href="">link 3</a></li>
+            </ul>
+        </section>
+    </footer>
+</body>
+</html>
